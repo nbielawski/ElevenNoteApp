@@ -52,8 +52,8 @@ namespace ElevenNote.Web.Controllers
                 return View(model);
             }
 
+            TempData["SaveResult"] = "Your Note Was Saved";
 
-            TempData["Save Result"] = "Your note was created.";
             return RedirectToAction("Index");
         }
    
