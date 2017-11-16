@@ -52,6 +52,8 @@ namespace ElevenNote.Web.Controllers
                 return View(model);
             }
 
+
+            TempData["Save Result"] = "Your note was created.";
             return RedirectToAction("Index");
         }
    
@@ -82,13 +84,13 @@ namespace ElevenNote.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, NoteEditModel model)
         {
-            if(model.NoteId != id)
+            if (model.NoteId != id)
             {
 
                 ModelState.AddModelError("", "Nice try!");
 
                 model.NoteId = id;
-                    return View(model);
+                return View(model);
             }
 
             if (!ModelState.IsValid) return View(model);
@@ -97,6 +99,8 @@ namespace ElevenNote.Web.Controllers
             {
                 ModelState.AddModelError("", "unable to update");
             }
+
+            TempData["SaveResult"] = "Your Note Was Saved";
 
             return RedirectToAction("Index");
         }
@@ -117,6 +121,8 @@ namespace ElevenNote.Web.Controllers
         public ActionResult DeletePost (int id)
         {
             CreateNoteService().DeleteNote(id);
+
+            TempData["Save Result"] = "Your note was Deleted.";
 
             return RedirectToAction("Index");
         }
